@@ -8,46 +8,42 @@ set expandtab
 set smartindent
 set  mouse=a
 set noshowmode
-
+set encoding=UTF-8
+set termguicolors
+set laststatus=2
+set updatetime=300
 set nocompatible 
 filetype off  
 
-set termguicolors
 
 call plug#begin()
 Plug 'neoclide/coc.nvim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'    
+Plug 'jiangmiao/auto-pairs'
+Plug 'frazrepo/vim-rainbow'
+Plug 'dracula/vim', { 'name': 'dracula' }
+Plug 'vim-scripts/indentpython.vim'
+Plug 'preservim/nerdtree'
+Plug 'KabbAmine/vCoolor.vim'
+Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 call plug#end()
-set encoding=UTF-8
 
-
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'nvie/vim-flake8'
-Plugin 'itchyny/lightline.vim'
-Plugin 'preservim/nerdtree'
-Plugin 'mattn/emmet-vim'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'    
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'frazrepo/vim-rainbow'
-Plugin 'dracula/vim', { 'name': 'dracula' }
-Plugin 'KabbAmine/vCoolor.vim'
-call vundle#end()
-filetype plugin indent on
 
 
 let NERDTreeShowHidden=1
  let g:lightline = {
       \ 'colorscheme': 'dracula',
       \ }
-set laststatus=2
 let g:user_emmet_leader_key=','
 let mapleader=","
+let python_highlight_all=1
+syntax on
+colorscheme dracula
 "remaps for normal mode
 nnoremap <leader>pv :Vex<CR>
 nnoremap <leader>w <c-w>w<CR>
@@ -56,10 +52,13 @@ nnoremap <C-g> :GFiles <CR>
 nnoremap <C-f> :Files <CR>
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap <leader>x :!chmod +x %<CR>
-let python_highlight_all=1
-syntax on
-colorscheme dracula
-
+nnoremap <leader>h gT  <CR>
+nnoremap <leader>l gt<CR>
+nnoremap <silent> <leader>s :w<CR>
+nnoremap <leader>` :q!<CR>
+nnoremap <silent> <leader>d :%!jq<CR>
+nnoremap <silent> <A-t> :Rg<CR>
+nnoremap ; :
 " remaps for terminal mode
 tnoremap <F1> <C-\><C-N>
 
@@ -71,4 +70,11 @@ vnoremap <leader>c I#<Esc>
 vnoremap <leader>q I<Tab><Esc> 
 
 
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
+
+map <leader>e :tabe %%
+
+
+lua require'colorizer'.setup()
 
